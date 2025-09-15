@@ -2,14 +2,13 @@ import Link from 'next/link'
 
 export function Hero() {
   return (
-    <section className="rounded-2xl bg-beige p-10">
-      <h1 className="font-serif text-3xl md:text-5xl mb-3">Rediscover Your Beauty</h1>
-      <p className="text-gray-700 max-w-2xl">Excellence, innovation, and personalized care in Barcelona. Explore world-class medical aesthetics in a luxurious environment.</p>
+    <section className="rounded-2xl p-10 bg-gradient-to-br from-beige to-pure">
+      <h1 className="font-serif text-3xl md:text-5xl mb-3">Your Skin, Our Passion</h1>
+      <p className="text-gray-700 max-w-2xl">Confianza, innovación médica y cuidado personalizado en un entorno de lujo.</p>
       <div className="mt-6 flex gap-3">
-        <Link href="/contact" className="rounded-md bg-gold px-4 py-2 text-white">Book Appointment</Link>
-        <Link href="/treatments" className="rounded-md border px-4 py-2">Explore Treatments</Link>
+        <Link href="/book" className="rounded-md bg-gold px-4 py-2 text-white shadow-gold-sm hover:shadow-gold-md transition">Agendar consulta</Link>
+        <Link href="/treatments" className="rounded-md border px-4 py-2 hover:shadow-gold-sm transition">Saber más</Link>
       </div>
     </section>
   )
 }
-

@@ -77,10 +77,22 @@ export async function listBlogPosts(): Promise<BlogPost[]> {
   return data as BlogPost[]
 }
 
+export async function listBlogPostsPage(page: number, pageSize: number): Promise<{ items: BlogPost[]; count: number }> {
+  const supabase = getSupabaseAnon()
+  const from = (page - 1) * pageSize
+  const to = from + pageSize - 1
+  const { data, error, count } = await supabase
+    .from('blog_posts')
+    .select('*', { count: 'exact' })
+    .order('created_at', { ascending: false })
+    .range(from, to)
+  if (error) throw error
+  return { items: (data as BlogPost[]) || [], count: count || 0 }
+}
+
 export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
   const supabase = getSupabaseAnon()
   const { data, error } = await supabase.from('blog_posts').select('*').eq('slug', slug).maybeSingle()
   if (error) throw error
   return data as BlogPost | null
 }
-
